@@ -11,7 +11,7 @@
         <br>
         <input class="form-control" placeholder="Name">
         <br>
-        <buttom class="btn btn-success">Send</buttom>
+        <buttom id="send" class="btn btn-success">Send</buttom>
     </div>
     <div id="messages">
 
@@ -19,7 +19,9 @@
 </div>
 <script>
     $(() => {
-        addMessages({name: 'Mike', message: 'hello'})
+            $("#send").click(()=>{
+                addMessages({name: 'Mike', message: 'hello'})
+        })
     })
 
     function addMessages(message){
