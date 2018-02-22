@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/NiksonX/ChatApp/issues"
   },
-  "homepage": "https://github.com/NiksonX/ChatApp#readme"
+  "homepage": "https://github.com/NiksonX/ChatApp#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
