@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
     console.log('a user connected')
 })
 
-mongoose.connect(dbUrl, {useMongoClient: true}, (err) => {
+mongoose.connect(dbUrl, (err) => {
     console.log('mongo db connection', err)
 } )
 
