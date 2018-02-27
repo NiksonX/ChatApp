@@ -27,7 +27,6 @@ app.get('/messages', (req, res) => {
 app.post('/messages', async (req, res) => {
 
     try {
-        throw 'error'
         var message = new Message(req.body)
 
         var savedMessage = await message.save()
