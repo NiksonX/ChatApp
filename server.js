@@ -47,8 +47,6 @@ app.post('/messages', async (req, res) => {
 
 })
 
-
-
 io.on('connection', (socket) => {
     console.log('a user connected')
 })
