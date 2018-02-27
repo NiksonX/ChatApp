@@ -16,13 +16,10 @@ var Message = mongoose.model('Message', {
     message: String
 })
 
-var messages = [
-    {name: 'Mike', message: 'Hi'},
-    {name: 'Andrey', message: 'Hello'}
-]
-
 app.get('/messages', (req, res) => {
-    res.send(messages)
+    Message.find({}, (err, messages) => {
+        res.send(messages)
+    })
 })
 
 app.post('/messages', (req, res) => {
