@@ -17,7 +17,7 @@ var Message = mongoose.model('Message', {
 })
 
 app.get('/messages', (req, res) => {
-    Message.find({}, (err, messages) => {
+    Message.find({}, (err, messages) =>{
         res.send(messages)
     })
 })
@@ -26,12 +26,20 @@ app.post('/messages', (req, res) => {
     var message = new Message(req.body)
 
     message.save((err) => {
-        ir(err)
+        if (err)
             sendStatus(500)
-        
-        messages.push(req.body)
+
+        Message.findOne({message: 'badword'}, (err, censored) => {
+            if(censored) {
+                console.log('censored words found', censored)
+                Message.remove({_id: censored.id}, (err) =>{
+                    console.log('removed censored message')
+                })
+            }
+        })
+
         io.emit('message', req.body)
-        res.sendStatus(200)   
+        res.sendStatus(200)
     })
 
 })
@@ -42,7 +50,7 @@ io.on('connection', (socket) => {
 
 mongoose.connect(dbUrl, (err) => {
     console.log('mongo db connection', err)
-} )
+})
 
 var server = http.listen(3000, () => {
     console.log('server is listening on port', server.address().port)
